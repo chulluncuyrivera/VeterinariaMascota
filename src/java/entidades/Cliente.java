@@ -1,5 +1,5 @@
 package entidades;
-// Generated 24/06/2019 09:52:53 AM by Hibernate Tools 4.3.1
+// Generated 14/07/2019 08:40:33 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,10 +12,10 @@ import java.util.Set;
 public class Cliente  implements java.io.Serializable {
 
 
-     private int idcliente;
+     private int idCliente;
      private String nombre;
      private String apellido;
-     private Date fechanacimiento;
+     private Date fechaNacimiento;
      private String direccion;
      private String telefono;
      private String email;
@@ -25,32 +25,26 @@ public class Cliente  implements java.io.Serializable {
     }
 
 	
-    public Cliente(int idcliente, String nombre, String apellido, Date fechanacimiento, String direccion, String telefono, String email) {
-        this.idcliente = idcliente;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.fechanacimiento = fechanacimiento;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.email = email;
+    public Cliente(int idCliente) {
+        this.idCliente = idCliente;
     }
-    public Cliente(int idcliente, String nombre, String apellido, Date fechanacimiento, String direccion, String telefono, String email, Set mascotaporclientes) {
-       this.idcliente = idcliente;
+    public Cliente(int idCliente, String nombre, String apellido, Date fechaNacimiento, String direccion, String telefono, String email, Set mascotaporclientes) {
+       this.idCliente = idCliente;
        this.nombre = nombre;
        this.apellido = apellido;
-       this.fechanacimiento = fechanacimiento;
+       this.fechaNacimiento = fechaNacimiento;
        this.direccion = direccion;
        this.telefono = telefono;
        this.email = email;
        this.mascotaporclientes = mascotaporclientes;
     }
    
-    public int getIdcliente() {
-        return this.idcliente;
+    public int getIdCliente() {
+        return this.idCliente;
     }
     
-    public void setIdcliente(int idcliente) {
-        this.idcliente = idcliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
     public String getNombre() {
         return this.nombre;
@@ -66,12 +60,12 @@ public class Cliente  implements java.io.Serializable {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    public Date getFechanacimiento() {
-        return this.fechanacimiento;
+    public Date getFechaNacimiento() {
+        return this.fechaNacimiento;
     }
     
-    public void setFechanacimiento(Date fechanacimiento) {
-        this.fechanacimiento = fechanacimiento;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
     public String getDireccion() {
         return this.direccion;

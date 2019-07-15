@@ -1,5 +1,5 @@
 package entidades;
-// Generated 24/06/2019 09:52:53 AM by Hibernate Tools 4.3.1
+// Generated 14/07/2019 08:40:33 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,34 +13,34 @@ public class Personal  implements java.io.Serializable {
 
      private int idPersonal;
      private String nombre;
+     private String apellidos;
      private String dni;
      private String telefono;
      private String cargo;
      private String email;
-     private String apellido;
      private Set atencions = new HashSet(0);
 
     public Personal() {
     }
 
 	
-    public Personal(int idPersonal, String nombre, String dni, String telefono, String cargo, String email, String apellido) {
+    public Personal(int idPersonal, String nombre, String apellidos, String dni, String telefono, String cargo, String email) {
         this.idPersonal = idPersonal;
         this.nombre = nombre;
+        this.apellidos = apellidos;
         this.dni = dni;
         this.telefono = telefono;
         this.cargo = cargo;
         this.email = email;
-        this.apellido = apellido;
     }
-    public Personal(int idPersonal, String nombre, String dni, String telefono, String cargo, String email, String apellido, Set atencions) {
+    public Personal(int idPersonal, String nombre, String apellidos, String dni, String telefono, String cargo, String email, Set atencions) {
        this.idPersonal = idPersonal;
        this.nombre = nombre;
+       this.apellidos = apellidos;
        this.dni = dni;
        this.telefono = telefono;
        this.cargo = cargo;
        this.email = email;
-       this.apellido = apellido;
        this.atencions = atencions;
     }
    
@@ -57,6 +57,13 @@ public class Personal  implements java.io.Serializable {
     
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    public String getApellidos() {
+        return this.apellidos;
+    }
+    
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
     public String getDni() {
         return this.dni;
@@ -85,13 +92,6 @@ public class Personal  implements java.io.Serializable {
     
     public void setEmail(String email) {
         this.email = email;
-    }
-    public String getApellido() {
-        return this.apellido;
-    }
-    
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
     public Set getAtencions() {
         return this.atencions;

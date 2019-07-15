@@ -5,14 +5,16 @@
  */
 package managedBean;
 
-import Dao.ClienteDao;
-import entidades.Cliente;
+import Dao.PersonalDao;
+import Dao.TipoDocDao;
+import entidades.Personal;
+import entidades.TipoDocumento;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -20,87 +22,70 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class ClienteBeans {
+public class TipoDocumentoBeans {
 
-    //private Date date9;
-    private Cliente cliente;
-     private boolean banderaSelect = false;
+    private TipoDocumento documento;
+    private boolean banderaSelect = false;
 
     //constructor
-    public ClienteBeans() {
-        this.cliente = new Cliente();
-    }
-    private java.util.Date data;
-
-    public Date getData() {
-        return data;
+    public TipoDocumentoBeans() {
+        this.documento = new TipoDocumento();
     }
 
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public String guardarCliente() {
-        ClienteDao clientedao = new ClienteDao();
-        boolean respuesta = clientedao.guardarCliente(cliente);
+    public String guardarTipoDocumento() {
+        TipoDocDao dao = new TipoDocDao();
+        boolean respuesta = dao.guardarTipoDocumento(documento);
         if (respuesta) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Se guardo correctamente"));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo registrar"));
         }
-        return "/RegistroCliente";
+        return "/RegistroTipoDocumento";
 
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public String actualizarCliente() {
+    public String actualizarDocumento() {
         try {
-            ClienteDao mascotadao = new ClienteDao();
-            boolean resp = mascotadao.ActualizarMascota(cliente);
+            TipoDocDao TipoDocDao = new TipoDocDao();
+            boolean resp = TipoDocDao.ActualizarTipoDocumento(documento);
             if (resp) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Se actualizo correctamente"));
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se Pudo Actualizar"));
 
             }
-            mascotadao.ActualizarMascota(cliente);
-        } catch (Exception e) {
+            // personaldao.ActualizarPersonal(personal);
+        } catch (HibernateException e) {
             System.out.println("Error::" + e);
         }
-        return "/RegistroCliente";
+        return "/RegistroTipoDocumento";
     }
 
-    public ArrayList<Cliente> listarCliente() {
-        ArrayList<Cliente> milista = new ArrayList<>();
-        ClienteDao dao = new ClienteDao();
-        milista = dao.listarCliente();
+
+    public ArrayList<TipoDocumento> listarDocumento() {
+        ArrayList<TipoDocumento> milista = new ArrayList<>();
+        TipoDocDao dao = new TipoDocDao();
+        milista = dao.listarTipoDocumento();
         return milista;
 
     }
 
     public String limpiar() {
-        banderaSelect=false;
-        return "/RegistroCliente.xhtml";
+        banderaSelect = false;
+        return "/RegistroTipoDocumento.xhtml";
     }
 
-    public String eliminar(Cliente data) {
-        ClienteDao madao = new ClienteDao();
-        boolean respuesta = madao.eliminarMascota(data);
+    public String eliminar(TipoDocumento document) {
+        TipoDocDao tipoDocDao = new TipoDocDao();
+        boolean respuesta = tipoDocDao.eliminarTipoDocumento(document);
         if (respuesta) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Se elimino correctamente"));
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo eliminar"));
         }
-
-        return "/RegistroCliente.xhtml";
+        return "/RegistroTipoDocumento.xhtml";
     }
+
     public void selectBandera() {
         banderaSelect = true;
     }
@@ -112,5 +97,13 @@ public class ClienteBeans {
     public void setBanderaSelect(boolean banderaSelect) {
         this.banderaSelect = banderaSelect;
     }
-    
+
+    public TipoDocumento getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(TipoDocumento documento) {
+        this.documento = documento;
+    }
+
 }

@@ -5,81 +5,66 @@
  */
 package Dao;
 
-import entidades.Cliente;
-import interfaces.ICliente;
+
+import entidades.TipoDocumento;
 import java.util.ArrayList;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
+
 import org.hibernate.Transaction;
+
 import utilitarios.HibernateUtil;
+import interfaces.ITipoDocumento;
 
 /**
  *
  * @author USUARIOWIN10
  */
-public class ClienteDao implements ICliente {
+public class TipoDocDao implements ITipoDocumento {
 
+   
     @Override
-    public boolean guardarCliente(Cliente cliente) {
-//Construir una nueva session y una nueva transaccion
-        boolean respuesta = true;
+    public boolean guardarTipoDocumento(TipoDocumento documento) {
+     
+    boolean respuesta = true;
         Session sesion = HibernateUtil.getSessionFactory().openSession();
         Transaction transaccion = sesion.beginTransaction();
-        //Rgistrar en la base de datos la cliente
+        //Rgistrar en la base de datos la personal
+
         try {
-            sesion.save(cliente);
+            sesion.save(documento);
             transaccion.commit();
         } catch (Exception e) {
             System.out.println("ERROR DE GUARDAR::" + e);
             respuesta = false;
         }
+
         sesion.close();
         return respuesta;
     }
 
     @Override
-    public ArrayList<Cliente> listarCliente() {
-
-        Session sesion = HibernateUtil.getSessionFactory().openSession();
-        ArrayList<Cliente> milista = new ArrayList<>();
+    public ArrayList<TipoDocumento> listarTipoDocumento() {
+          Session sesion = HibernateUtil.getSessionFactory().openSession();
+        ArrayList<TipoDocumento> milista = new ArrayList<>();
         //Create la consulta hacia la base de datos
-        Query query = sesion.createQuery("from Cliente");
+        Query query = sesion.createQuery("from TipoDocumento");
         //Ejecutar la consulta y obtener la lista
-        milista = (ArrayList<Cliente>) query.list();
+        milista = (ArrayList<TipoDocumento>) query.list();
         sesion.close();
         return milista;
     }
 
     @Override
-    public boolean ActualizarMascota(Cliente cliente) {
-        System.out.println("error" + cliente.getNombre());
-        boolean resp = true;
-        Session sesion = null;
-        try {
-            sesion = HibernateUtil.getSessionFactory().openSession();
-            Transaction transaction = sesion.beginTransaction();
-            sesion.update(cliente);
-            transaction.commit();
-        } catch (Exception e) {
-            System.out.println("Error en actualizar::" + e);
-        } finally {
-            if (sesion != null) {
-                sesion.close();
-            }
-
-        }
-        return resp;
-    }
-
-    @Override
-    public boolean eliminarMascota(Cliente cliente) {
-
-        Session sesion = null;
+    public boolean eliminarTipoDocumento(TipoDocumento documento) {
+         
+    Session sesion = null;
         boolean resp = true;
         try {
             sesion = HibernateUtil.getSessionFactory().openSession();
             sesion.beginTransaction();
-            sesion.delete(cliente);
+            sesion.delete(documento);
             sesion.getTransaction().commit();
 
         } catch (Exception e) {
@@ -96,4 +81,25 @@ public class ClienteDao implements ICliente {
         return resp;
     }
 
+    @Override
+    public boolean ActualizarTipoDocumento(TipoDocumento documento) {
+        
+   //     System.out.println("error" + ITipoDocumento.getNombre());
+        boolean resp = true;
+        Session sesion = null;
+        try {
+            sesion = HibernateUtil.getSessionFactory().openSession();
+            Transaction transaction = sesion.beginTransaction();
+            sesion.update(documento);
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println("Error en actualizar::" + e);
+        } finally {
+            if (sesion != null) {
+                sesion.close();
+            }
+
+        }
+        return resp;
+    }
 }

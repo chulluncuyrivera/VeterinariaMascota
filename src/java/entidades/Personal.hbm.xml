@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24/06/2019 09:52:55 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/07/2019 08:40:35 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entidades.Personal" table="personal" catalog="mascota" optimistic-lock="version">
         <id name="idPersonal" type="int">
@@ -10,6 +10,9 @@
         </id>
         <property name="nombre" type="string">
             <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="Apellidos" length="45" not-null="true" />
         </property>
         <property name="dni" type="string">
             <column name="dni" length="8" not-null="true" />
@@ -22,9 +25,6 @@
         </property>
         <property name="email" type="string">
             <column name="email" length="45" not-null="true" />
-        </property>
-        <property name="apellido" type="string">
-            <column name="apellido" length="45" not-null="true" />
         </property>
         <set name="atencions" table="atencion" inverse="true" lazy="true" fetch="select">
             <key>
